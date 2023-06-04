@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Bienvenue au Bookstore</title>
+</head>
+<header>
+    <a href="https://localhost:8080/"><img src="ressources/static/Bookstoregif.gif"/></a>
+    <div class="menu">
+        <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
+        <a href="http://localhost:8080/cart"><button>Panier</button></a>
+        <a href="http://localhost:8080/login"><button>Log in</button></a>
+    </div>
+</header>
+
+<body>
+<div class="livre">
+    th:each="book : ${books}"
+    <div class="title">th:text="${book.title}"</div>
+    <div class="author">th:text="${book.author}"</div>
+    <div class="description"> th:text="${book.description}"</div>
+    <div class="image">th:text="${book.image}"</div>
+    <div class="price">th:text="${book.price}"</div>
+</div>
+
+
+<footer>
+    <div class="footer">
+        <a href="https://www.instagram.com/"><img src="ressources/static/instagram.png"></img></a>
+    </div>
+</footer>
+
+</body>
+</html>

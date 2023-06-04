@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #0096B1;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+body {
+    min-height: 100vh;
+    font-family: Bree serif;
+    background: radial-gradient(rgb(233, 233, 233), rgb(187, 187, 187));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.rgpd {
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Bree Serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-line;
+}
