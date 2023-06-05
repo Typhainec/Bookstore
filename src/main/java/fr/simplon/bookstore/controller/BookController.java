@@ -3,13 +3,14 @@ package fr.simplon.bookstore.controller;
 import fr.simplon.bookstore.dao.impl.BookRepository;
 import fr.simplon.bookstore.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class BookController {
 
     private final BookRepository repo;
@@ -21,6 +22,17 @@ public class BookController {
     @GetMapping("/")
     public List<Book> getBooks() {
         return repo.findAll();
+    }
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @RequestMapping("/")
+    public ModelAndView index() {
+        ModelAndView mav = new ModelAndView("index");
+        List<Book> books = repo.findAll();
+        mav.addObject("books", books);
+        return mav;
     }
 
     @GetMapping("/book-sheet")
@@ -44,13 +56,6 @@ public class BookController {
         return book;
     }
 
-    @Autowired
-    private BookRepository bookRepository;
 
-    public ModelAndView books() {
-        ModelAndView mav = new ModelAndView("booklist");
-        List<Book> books = bookRepository.findAll();
-        mav.addObject("book", books);
-        return mav;
-    }
+
 }

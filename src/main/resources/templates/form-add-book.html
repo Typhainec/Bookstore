@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="style.css"/>
+    <title>Enregistrer un livre</title>
 </head>
+<header>
+    <a href="https://localhost:8080/"><img class="Bookstoregif" src="Bookstoregif.gif"/></a>
+    <div class="menu">
+        <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
+        <a href="http://localhost:8080/cart"><button>Panier</button></a>
+        <a href="http://localhost:8080/login"><button>Log in</button></a>
+    </div>
+</header>
 <body>
+<div class="form-group">
+<form method="PUT" action="/form-add-book">
+    <div>
+        <label for="title">Titre:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+    </div>
+    <div>
+        <label for="image">Image :</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+    </div>
+    <div>
+        <label for="price">Prix:</label>
+        <input type="text" id="price" name="price" pattern="[0-9]+(\.[0-9]{1,2})?" title="Entrez un nombre avec au maximum deux décimales" required>
+    </div>
+
+    <button type="submit">Enregistrer le livre</button>
+</form>
+</div>
+
+<footer>
+    <span>Contact  : </span>
+    <a href="http://gmail.com"><img class="email" src="email.png"></img></a>
+    <a href="https://www.instagram.com/"><img class="instagram" src="instagram.png"></img></a>
+</footer>
 
 </body>
 </html>

@@ -6,7 +6,7 @@
     <title>Bienvenue au Bookstore</title>
 </head>
 <header>
-    <a href="https://localhost:8080/"><img src="ressources/static/Bookstoregif.gif"/></a>
+    <a href="https://localhost:8080/"><img class="Bookstoregif" src="Bookstoregif.gif"/></a>
     <div class="menu">
         <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
         <a href="http://localhost:8080/cart"><button>Panier</button></a>
@@ -15,21 +15,20 @@
 </header>
 
 <body>
-<div class="livre">
-    th:each="book : ${books}"
-    <div class="title">th:text="${book.title}"</div>
-    <div class="author">th:text="${book.author}"</div>
-    <div class="description"> th:text="${book.description}"</div>
-    <div class="image">th:text="${book.image}"</div>
-    <div class="price">th:text="${book.price}"</div>
+<div class="book" th:each="book : ${books}">
+    <div class="title" th:text="${book.title}"></div>
+    <div class="author" th:text="${book.author}"></div>
+    <div class="description" th:text="${book.description}"></div>
+    <div class="image" th:text="${book.image}"></div>
+    <div class="price" th:text="${book.price}"></div>
 </div>
 
 
-<footer>
-    <div class="footer">
-        <a href="https://www.instagram.com/"><img src="ressources/static/instagram.png"></img></a>
-    </div>
-</footer>
 
+<footer>
+    <span>Contact  : </span>
+        <a href="http://gmail.com"><img class="email" src="email.png"></img></a>
+        <a href="https://www.instagram.com/"><img class="instagram" src="instagram.png"></img></a>
+</footer>
 </body>
 </html>
