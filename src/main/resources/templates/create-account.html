@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/style.css"/>
-    <title>Votre panier</title>
+    <title>S'inscrire'</title>
 </head>
 <header>
     <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
@@ -14,6 +14,20 @@
     </div>
 </header>
 <body>
+
+<form method="post">
+    <label for="login">Nom d'utilisateur:</label>
+    <input type="text" id="login" name="login" required><br>
+
+    <label for="password">Mot de passe:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <label for="confirmPassword">Confirmez le mot de passe:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+
+    <input type="submit" value="S'inscrire">
+</form>
+
 <footer>
     <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
     <span>Contact  : </span>

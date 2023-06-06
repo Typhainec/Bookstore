@@ -2,10 +2,11 @@ package fr.simplon.bookstore.entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.Base64;
 
 @Entity
-@Table(name = "books")
 public class Book {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,4 +66,14 @@ public class Book {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+
+    public String getImageBase64() {
+        if (image != null) {
+            return Base64.getEncoder().encodeToString(image);
+        }
+        return null;
+    }
+
+
 }

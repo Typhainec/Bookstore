@@ -1,11 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="/style.css"/>
     <title>Le règlement général sur la protection des données</title>
 </head>
 <header>
-  <a href="https://localhost:8080/"><img class="Bookstoregif" src="Bookstoregif.gif"/></a>
+  <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
   <div class="menu">
     <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
     <a href="http://localhost:8080/cart"><button>Panier</button></a>
@@ -730,9 +730,11 @@
   ONT ADOPTÉ LE PRÉSENT RÈGLEMENT :</div>
 
 <footer>
+  <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
   <span>Contact  : </span>
-  <a href="http://gmail.com"><img class="email" src="email.png"></img></a>
-  <a href="https://www.instagram.com/"><img class="instagram" src="instagram.png"></img></a>
+  <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></img></a>
+  <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
+
 </footer>
 </body>
 </html>

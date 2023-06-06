@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <title th:text="${book.title}">Bookstore</title>
 </head>
 <header>
-    <a href="https://localhost:8080/"><img class="Bookstoregif" src="Bookstoregif.gif"/></a>
+    <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
     <div class="menu">
         <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
         <a href="http://localhost:8080/cart"><button>Panier</button></a>
@@ -13,10 +14,25 @@
     </div>
 </header>
 <body>
+
+
+
+<div class="book" th:object="${book}">
+    <div class="title" th:text="${book.title}"></div>
+    <div class="author" th:text="${book.author}"></div>
+    <div class="description" th:text="${book.description}"></div>
+    <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
+    <div class="price" th:text="${book.price}"></div>
+
+    <button><a th:href="@{/books/favorites/{id}(id=${book.id})}">Favoris</a> </button>
+    <button><a th:href="@{/books/cart/{id}(id=${book.id})}">Ajouter au panier</a> </button>
+</div>
 <footer>
+    <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
     <span>Contact  : </span>
-    <a href="http://gmail.com"><img class="email" src="email.png"></img></a>
-    <a href="https://www.instagram.com/"><img class="instagram" src="instagram.png"></img></a>
+    <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></img></a>
+    <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
+
 </footer>
 </body>
 </html>

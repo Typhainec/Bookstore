@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
     <title>Enregistrer un livre</title>
 </head>
 <header>
-    <a href="https://localhost:8080/"><img class="Bookstoregif" src="Bookstoregif.gif"/></a>
+    <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
     <div class="menu">
         <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
         <a href="http://localhost:8080/cart"><button>Panier</button></a>
@@ -15,10 +15,14 @@
 </header>
 <body>
 <div class="form-group">
-<form method="PUT" action="/form-add-book">
+<form method="POST" action="/form-add-book">
     <div>
         <label for="title">Titre:</label>
         <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="author">Auteur:</label>
+        <input type="text" id="author" name="author" required>
     </div>
     <div>
         <label for="description">Description:</label>
@@ -38,9 +42,11 @@
 </div>
 
 <footer>
+    <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
     <span>Contact  : </span>
-    <a href="http://gmail.com"><img class="email" src="email.png"></img></a>
-    <a href="https://www.instagram.com/"><img class="instagram" src="instagram.png"></img></a>
+    <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></img></a>
+    <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
+
 </footer>
 
 </body>
