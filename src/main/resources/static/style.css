@@ -1,0 +1,165 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #0096B1;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+div.menu {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 4px;
+}
+
+button {
+    margin: 10px;
+}
+
+.Bookstoregif {
+    height: 100px;
+    width: 100px;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Bree serif;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.pageindex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    background-color: #ffffff;
+    border: none;
+    margin: 20px;
+    padding: 20px;
+}
+
+div.book {
+    display: grid;
+    grid-gap: 20px;
+    background: #DFEAEC;
+    border: none;
+    margin: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.book {
+    background-color: #DFEAEC;
+    display: flex;
+    align-items: center;
+}
+
+.title,
+.author,
+.price {
+    text-align: left;
+    color: #00202E;
+    font-family: Bree, serif;
+}
+
+.description {
+    text-align: left;
+    color: #00202E;
+    font-family: Bree, serif;
+
+}
+
+.image {
+    text-align: left;
+    width: 145px;
+    height: 245px;
+}
+
+.buttonsIndex {
+    display: flex;
+    justify-items: auto ;
+}
+
+
+div.rgpd {
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Bree, serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #00202E;
+    white-space: pre-line;
+}
+
+footer {
+    background-color: #0096B1;
+    font-family: "Bree Serif", serif;
+    color: #ffffff;
+    padding: 20px;
+    text-align: right;
+}
+
+.instagram {
+    height: 15px;
+    width: 15px;
+}
+
+.email {
+    height: 15px;
+    width: 20px;
+}
+
+.contact {
+    background-color: #f2f2f2;
+    color: #00202E;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+
+}
+
+form-group {
+    padding: 20px;
+}
+
+form {
+    background-color:  #DFEAEC;
+    padding: 20px;
+    margin: 60px;
+}
+
+form div {
+    margin-bottom: 10px;
+    border: none;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #00202E;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 5px;
+}
+
+button[type="submit"] {
+    background-color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0096B1;
+    color: #00202E;
+}
