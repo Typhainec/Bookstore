@@ -6,16 +6,15 @@
     <title>S'inscrire'</title>
 </head>
 <header>
-    <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
+    <a href="http://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
     <div class="menu">
-        <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
         <a href="http://localhost:8080/cart"><button>Panier</button></a>
         <a href="http://localhost:8080/login"><button>Log in</button></a>
     </div>
 </header>
 <body>
 
-<form method="post">
+<form method="post" th:action="@{/create-account}">
     <label for="login">Nom d'utilisateur:</label>
     <input type="text" id="login" name="login" required><br>
 

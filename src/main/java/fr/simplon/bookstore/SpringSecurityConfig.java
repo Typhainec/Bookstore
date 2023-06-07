@@ -17,21 +17,21 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfig //Cette classe et ses annotations servent à demander une authentification pour chaque page.
+public class SpringSecurityConfig
 {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf().disable() // Pour l'instant, on désactive la protection CSRF
+                .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/").permitAll()
                 .requestMatchers(HttpMethod.GET, "/book-sheet").permitAll()
                 .requestMatchers(HttpMethod.GET, "/cart").authenticated()
                 .requestMatchers(HttpMethod.GET, "/contact").permitAll()
                 .requestMatchers(HttpMethod.GET, "/rgpd").permitAll()
-                .requestMatchers(HttpMethod.POST, "/form-add-book").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/form-add-book").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/create-account").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN") // Pas de préfixe "ROLE" mais en BDD : oui !
+                .requestMatchers("/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and().formLogin()
                 .and().build();
@@ -51,4 +51,5 @@ public class SpringSecurityConfig //Cette classe et ses annotations servent à d
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     }
+
 }

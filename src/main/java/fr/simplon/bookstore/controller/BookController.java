@@ -3,6 +3,7 @@ package fr.simplon.bookstore.controller;
 import fr.simplon.bookstore.dao.impl.BookRepository;
 import fr.simplon.bookstore.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class BookController {
     public BookController(BookRepository repo) {
         this.repo = repo;
     }
+
 
     @GetMapping("/")
     public String getBooks(Model model) {
@@ -37,6 +39,13 @@ public class BookController {
         return "contact";
     }
 
+    @RequestMapping("/cart")
+    public String cart(Model model) {
+        model.addAttribute("book", new Book());
+        return "cart";
+    }
+
+
 
     @GetMapping("/book-sheet/{id}")
     public String getBookById(@PathVariable Long id, Model model) {
@@ -54,23 +63,14 @@ public class BookController {
         return "form-add-book";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/form-add-book")
+    public String postBook(@ModelAttribute("postBook") Book postBook) {
+        repo.save(postBook);
+        Long id = postBook.getId();
 
-    @PostMapping("/form-add-book")  // Utilisez @PostMapping au lieu de @PutMapping pour les formulaires HTML
-    public String updateBook(@PathVariable Long id, Book updatedBook) {  // Supprimez l'annotation @RequestBody car elle est utilisée pour les requêtes JSON
-        Optional<Book> optionalBook = repo.findById(id);
-        if (optionalBook.isPresent()) {
-            Book book = optionalBook.get();
-            book.setTitle(updatedBook.getTitle());
-            book.setAuthor(updatedBook.getAuthor());
-            book.setDescription(updatedBook.getDescription());
-            book.setImage(updatedBook.getImage());
-            book.setPrice(updatedBook.getPrice());
-            repo.save(book);
-        }
         return "redirect:/book-sheet/" + id;
     }
-
-
 
 
 }

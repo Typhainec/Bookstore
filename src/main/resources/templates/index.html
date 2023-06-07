@@ -6,18 +6,28 @@
     <title>Bienvenue au Bookstore</title>
 </head>
 <header>
-    <a href="https://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
+    <a href="http://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
     <div class="menu">
-        <a href="http://localhost:8080/favorites"><button>Favoris</button></a>
+
         <a href="http://localhost:8080/cart"><button>Panier</button></a>
         <a href="http://localhost:8080/login"><button>Log in</button></a>
+        <a href="http://localhost:8080/create-account"><button>Créer un compte</button></a>
         <a href="http://localhost:8080/form-add-book"><button>Ajouter un livre</button></a>
 
     </div>
 </header>
 
+
+
 <body>
-<div class="pageindex">
+
+<select id="tri-select">
+    <option value="asc">Prix croissant</option>
+    <option value="desc">Prix décroissant</option>
+</select>
+
+
+<div id="books-list" class="pageindex">
 <div class="book" th:each="book : ${books}">
     <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
     <div class="title" th:text="${book.title}"></div>
@@ -26,7 +36,6 @@
     <div class="price" th:text="${book.price} + '€'"></div>
     <div class="buttonsIndex">
     <button><a th:href="@{/book-sheet/{id}(id=${book.id})}">Voir plus</a> </button>
-    <button><a th:href="@{/favorites/{id}(id=${book.id})}">Favoris</a> </button>
     <button><a th:href="@{/cart/{id}(id=${book.id})}">Ajouter au panier</a> </button>
     </div>
 </div>
@@ -41,4 +50,39 @@
 
 </footer>
 </body>
+<script>
+    // Fonction pour trier et afficher les livres
+    function sortBooks() {
+        var bookList = Array.from(document.getElementsByClassName("book"));
+
+        // Trier les livres en fonction de l'option sélectionnée
+        var tri = document.getElementById("tri-select").value;
+        if (tri === "asc") {
+            bookList.sort(function(a, b) {
+                var priceA = parseFloat(a.getElementsByClassName("price")[0].textContent);
+                var priceB = parseFloat(b.getElementsByClassName("price")[0].textContent);
+                return priceA - priceB;
+            });
+        } else if (tri === "desc") {
+            bookList.sort(function(a, b) {
+                var priceA = parseFloat(a.getElementsByClassName("price")[0].textContent);
+                var priceB = parseFloat(b.getElementsByClassName("price")[0].textContent);
+                return priceB - priceA;
+            });
+        }
+
+        // Réorganiser les livres dans la vue
+        var bookListParent = document.getElementById("books-list");
+        bookList.forEach(function(book) {
+            bookListParent.appendChild(book);
+        });
+    }
+
+    // Écouter les changements de l'option de tri
+    document.getElementById("tri-select").addEventListener("change", sortBooks);
+
+    // Trier et afficher les livres initialement
+    sortBooks();
+</script>
+
 </html>

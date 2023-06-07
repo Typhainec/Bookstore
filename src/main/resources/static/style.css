@@ -33,6 +33,12 @@ body {
     justify-content: space-between;
 }
 
+#tri-select {
+    width: 200px;
+    margin-top: 20px;
+}
+
+
 div.pageindex {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

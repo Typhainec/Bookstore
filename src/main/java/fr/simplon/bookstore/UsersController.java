@@ -35,16 +35,16 @@ public class UsersController
         passwordEncoder = pPasswordEncoder;
         userDetailsManager = pUserDetailsManager;
     }
-    @GetMapping(path = "/createUser")
+    @GetMapping(path = "/create-account")
     public String getCreateUserForm(@ModelAttribute(name="user") UserForm user, Model model)
     {
         if (user == null || !model.containsAttribute("user"))
         {
             model.addAttribute("user", new UserForm());
         }
-        return "/createUser";
+        return "/create-account";
     }
-    @PostMapping("/createUser")
+    @PostMapping("/create-account")
     @Transactional
     public String createUser(
             @Valid @ModelAttribute(name = "user") UserForm user,
@@ -63,7 +63,7 @@ public class UsersController
         }
         if (validation.hasErrors())
         {
-            return "/createUser";
+            return "/create-account";
         }
         String encodedPassword = passwordEncoder.encode(user.getPassword());
 // Roles for new user
@@ -71,6 +71,7 @@ public class UsersController
         UserDetails userDetails = new User(user.getLogin(), encodedPassword, roles);
 // Create the account in database with all its roles
         userDetailsManager.createUser(userDetails);
-        return "redirect:/index";
+        return "redirect:/";
     }
 }
+
