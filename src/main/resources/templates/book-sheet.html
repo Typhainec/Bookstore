@@ -8,24 +8,30 @@
 <header>
     <a href="http://localhost:8080/"><img class="Bookstoregif" src="/Bookstoregif.gif"/></a>
     <div class="menu">
-        <a href="http://localhost:8080/cart"><button>Panier</button></a>
-        <a href="http://localhost:8080/create-account"><button>Créer un compte</button></a>
-        <a href="http://localhost:8080/login"><button>Log in</button></a>
+        <a href="http://localhost:8080/cart">
+            <button>Panier</button>
+        </a>
+        <a href="http://localhost:8080/create-account">
+            <button>Créer un compte</button>
+        </a>
+        <a href="http://localhost:8080/login">
+            <button>Log in</button>
+        </a>
     </div>
 </header>
 <body>
 
-
+<input type="hidden" id="bookId" th:value="${book.id}"/>
 
 <div class="book" th:object="${book}">
     <div class="title" th:text="${book.title}"></div>
     <div class="author" th:text="${book.author}"></div>
     <div class="description" th:text="${book.description}"></div>
-    <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
+    <img class="image" th:src="${book.image}">
     <div class="price" th:text="${book.price}"></div>
 
-    <button><a th:href="@{/books/cart/(id=${book.id})}">Ajouter au panier</a> </button>
-    <button th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/books/deletebook/{id}(id=${book.id})}">Supprimer</button>
+    <button><a th:href="@{/books/cart/(id=${book.id})}">Ajouter au panier</a></button>
+    <button onclick="deleteBook(event)">Supprimer</button>
 
 </div>
 <footer>
@@ -36,4 +42,26 @@
 
 </footer>
 </body>
+<script>
+
+    function deleteBook(event) {
+        event.preventDefault();
+
+        var confirmation = confirm("Êtes-vous sûr de vouloir supprimer ce livre ?");
+        if (confirmation) {
+            var bookId = document.getElementById('bookId').value;
+            fetch('/delete/' + bookId, {
+                method: 'DELETE'
+            })
+            window.location.href = '/';
+        }
+    }
+
+</script>
+
+</script>
+
+
+</script>
+
 </html>

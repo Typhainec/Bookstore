@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +47,6 @@ public class BookController {
     }
 
 
-
     @GetMapping("/book-sheet/{id}")
     public String getBookById(@PathVariable Long id, Model model) {
         Optional<Book> optionalBook = repo.findById(id);
@@ -56,6 +56,8 @@ public class BookController {
         }
         return "book-sheet";
     }
+
+
 
     @RequestMapping("/form-add-book")
     public String addBook(Model model) {
@@ -71,6 +73,40 @@ public class BookController {
 
         return "redirect:/book-sheet/" + id;
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/book-sheet/{id}")
+    public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book updatedBook) {
+        Optional<Book> optionalBook = repo.findById(id);
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            book.setTitle(updatedBook.getTitle());
+            book.setAuthor(updatedBook.getAuthor());
+            book.setDescription(updatedBook.getDescription());
+            book.setImage(updatedBook.getImage());
+            book.setPrice(updatedBook.getPrice());
+            repo.save(book);
+
+            return "redirect:/book-sheet/" + id;
+        }
+        return "book-sheet";
+    }
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public String deleteBook(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        Optional<Book> bookOptional = repo.findById(id);
+
+        if (bookOptional.isPresent()) {
+            repo.delete(bookOptional.get());
+        }
+
+        return "redirect:/";
+    }
+
+
+
 
 
 }
