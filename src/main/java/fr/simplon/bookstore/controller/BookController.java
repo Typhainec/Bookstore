@@ -58,7 +58,6 @@ public class BookController {
     }
 
 
-
     @RequestMapping("/form-add-book")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
@@ -74,23 +73,32 @@ public class BookController {
         return "redirect:/book-sheet/" + id;
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @PostMapping("/book-sheet/{id}")
-    public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book updatedBook) {
+
+    @GetMapping("/update-book/{id}")
+    public String showUpdateBookForm(@PathVariable("id") Long id, Model model) {
+
+        Book book = repo.findById(id).orElse(null);
+
+        model.addAttribute("book", book);
+        return "update-book";
+    }
+
+    @RequestMapping("/update-book/{id}/submit")
+    public String updateBook(Model model, @ModelAttribute("book") Book updateBook, @PathVariable("id") Long id) {
         Optional<Book> optionalBook = repo.findById(id);
         if (optionalBook.isPresent()) {
             Book book = optionalBook.get();
-            book.setTitle(updatedBook.getTitle());
-            book.setAuthor(updatedBook.getAuthor());
-            book.setDescription(updatedBook.getDescription());
-            book.setImage(updatedBook.getImage());
-            book.setPrice(updatedBook.getPrice());
+            book.setTitle(updateBook.getTitle());
+            book.setAuthor(updateBook.getAuthor());
+            book.setDescription(updateBook.getDescription());
+            book.setImage(updateBook.getImage());
+            book.setPrice(updateBook.getPrice());
             repo.save(book);
-
-            return "redirect:/book-sheet/" + id;
         }
-        return "book-sheet";
+        return "redirect:/book-sheet/" + id;
     }
+
+
 
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -106,7 +114,7 @@ public class BookController {
     }
 
 
-
-
-
 }
+
+
+

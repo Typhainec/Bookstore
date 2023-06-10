@@ -27,10 +27,13 @@
     <div class="title" th:text="${book.title}"></div>
     <div class="author" th:text="${book.author}"></div>
     <div class="description" th:text="${book.description}"></div>
-    <img class="image" th:src="${book.image}">
+    <div>
+        <img th:src="@{'data:image/png;base64,' + ${base64Image}}" alt="Image">
+    </div>
     <div class="price" th:text="${book.price}"></div>
 
     <button><a th:href="@{/books/cart/(id=${book.id})}">Ajouter au panier</a></button>
+    <button><a th:href="@{/update-book/{id}(id=${book.id})}">Modifier ce livre</a></button>
     <button onclick="deleteBook(event)">Supprimer</button>
 
 </div>
@@ -53,15 +56,16 @@
             fetch('/delete/' + bookId, {
                 method: 'DELETE'
             })
+                .then(response => {
+                        var bookElement = document.querySelector('.book');
+                        bookElement.parentNode.removeChild(bookElement);
             window.location.href = '/';
-        }
+        })
+    }
     }
 
 </script>
 
-</script>
 
-
-</script>
 
 </html>
