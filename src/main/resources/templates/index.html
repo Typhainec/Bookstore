@@ -28,17 +28,17 @@
 
 
 <div id="books-list" class="pageindex">
-<div class="book" th:each="book : ${books}">
-    <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
-    <div class="title" th:text="${book.title}"></div>
-    <div class="author" th:text="${book.author}"></div>
-    <div class="description" th:text="${#strings.substring(book.description, 0, 150) + '...'}"></div>
-    <div class="price" th:text="${book.price} + '€'"></div>
-    <div class="buttonsIndex">
-    <button><a th:href="@{/book-sheet/{id}(id=${book.id})}">Voir plus</a> </button>
-    <button><a th:href="@{/cart/{id}(id=${book.id})}">Ajouter au panier</a> </button>
+    <div class="book" th:each="book : ${books}">
+        <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
+        <div class="title" th:text="${book.title}"></div>
+        <div class="author" th:text="${book.author}"></div>
+        <div class="description" th:text="${#strings.substring(book.description, 0, 150) + '...'}"></div>
+        <div class="price" th:text="${book.price} + '€'"></div>
+        <div class="buttonsIndex">
+            <button><a th:href="@{/book-sheet/{id}(id=${book.id})}">Voir plus</a> </button>
+            <button><a th:href="@{/cart/{id}(id=${book.id})}">Ajouter au panier</a> </button>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -46,7 +46,7 @@
     <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
     <span>Contact  : </span>
     <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></img></a>
-        <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
+    <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
 
 </footer>
 </body>

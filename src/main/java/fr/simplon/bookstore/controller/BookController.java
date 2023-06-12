@@ -64,6 +64,7 @@ public class BookController {
         return "form-add-book";
     }
 
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/form-add-book")
     public String postBook(@ModelAttribute("postBook") Book postBook) {
@@ -83,7 +84,7 @@ public class BookController {
         return "update-book";
     }
 
-    @RequestMapping("/update-book/{id}/submit")
+    @PostMapping("/update-book/{id}/submit")
     public String updateBook(Model model, @ModelAttribute("book") Book updateBook, @PathVariable("id") Long id) {
         Optional<Book> optionalBook = repo.findById(id);
         if (optionalBook.isPresent()) {

@@ -8,37 +8,45 @@
 <header>
     <a href="http://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
     <div class="menu">
-        <a href="http://localhost:8080/cart"><button>Panier</button></a>
-        <a href="http://localhost:8080/create-account"><button>Créer un compte</button></a>
-        <a href="http://localhost:8080/login"><button>Log in</button></a>
+        <a href="http://localhost:8080/cart">
+            <button>Panier</button>
+        </a>
+        <a href="http://localhost:8080/create-account">
+            <button>Créer un compte</button>
+        </a>
+        <a href="http://localhost:8080/login">
+            <button>Log in</button>
+        </a>
     </div>
 </header>
 <body>
 <div class="form-group">
-<form method="POST" action="/form-add-book">
-    <div>
-        <label for="title">Titre:</label>
-        <input type="text" id="title" name="title" required>
-    </div>
-    <div>
-        <label for="author">Auteur:</label>
-        <input type="text" id="author" name="author" required>
-    </div>
-    <div>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea>
-    </div>
-    <div>
-        <label for="image-input">Image :</label>
-        <input type="file" id="image-input" name="image" accept="image/*" required>
-    </div>
-    <div>
-        <label for="price">Prix:</label>
-        <input type="text" id="price" name="price" pattern="[0-9]+(\.[0-9]{1,2})?" title="Entrez un nombre avec au maximum deux décimales" required>
-    </div>
+    <form method="POST" action="/form-add-book">
+        <div>
+            <label for="title">Titre:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+            <label for="author">Auteur:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <label for="image-input">Image :</label>
+            <input type="file" id="image-input" name="image" accept="image/*" onchange="convertirImageEnBase64(this)"
+                   required>
+        </div>
+        <div>
+            <label for="price">Prix:</label>
+            <input type="text" id="price" name="price" pattern="[0-9]+(\.[0-9]{1,2})?"
+                   title="Entrez un nombre avec au maximum deux décimales" required>
+        </div>
 
-    <button type="submit">Enregistrer le livre</button>
-</form>
+        <button type="submit">Enregistrer le livre</button>
+    </form>
 </div>
 
 <footer>
@@ -48,6 +56,16 @@
     <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
 
 </footer>
-
+<script>
+    function convertirImageEnBase64(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var base64String = reader.result.split(',')[1];
+            console.log('Image en Base64:', base64String);
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </body>
 </html>

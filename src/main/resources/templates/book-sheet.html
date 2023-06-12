@@ -27,9 +27,7 @@
     <div class="title" th:text="${book.title}"></div>
     <div class="author" th:text="${book.author}"></div>
     <div class="description" th:text="${book.description}"></div>
-    <div>
-        <img th:src="@{'data:image/png;base64,' + ${base64Image}}" alt="Image">
-    </div>
+    <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
     <div class="price" th:text="${book.price}"></div>
 
     <button><a th:href="@{/books/cart/(id=${book.id})}">Ajouter au panier</a></button>

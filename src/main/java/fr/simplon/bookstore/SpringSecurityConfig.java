@@ -30,7 +30,7 @@ public class SpringSecurityConfig
                 .requestMatchers(HttpMethod.GET, "/contact").permitAll()
                 .requestMatchers(HttpMethod.GET, "/rgpd").permitAll()
                 .requestMatchers(HttpMethod.POST, "/form-add-book").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/update-book/{id}").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/update-book/{id}/submit").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/create-account").permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/delete/{id}").hasRole("ADMIN")
                 .requestMatchers("admin/**").hasRole("ADMIN")
