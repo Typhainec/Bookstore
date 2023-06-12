@@ -29,7 +29,7 @@
 
 <div id="books-list" class="pageindex">
     <div class="book" th:each="book : ${books}">
-        <img class="image" th:src="@{'data:image/png;base64,' + ${book.imageBase64}}" />
+        <img class="image" th:src="@{'data:image;base64,' + ${book.image64}}">
         <div class="title" th:text="${book.title}"></div>
         <div class="author" th:text="${book.author}"></div>
         <div class="description" th:text="${#strings.substring(book.description, 0, 150) + '...'}"></div>

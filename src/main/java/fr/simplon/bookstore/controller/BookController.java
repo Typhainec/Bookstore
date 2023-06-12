@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,6 +69,7 @@ public class BookController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/form-add-book")
     public String postBook(@ModelAttribute("postBook") Book postBook) {
+        postBook.setImage(Base64.getDecoder().decode(postBook.getImageBase64()));
         repo.save(postBook);
         Long id = postBook.getId();
 

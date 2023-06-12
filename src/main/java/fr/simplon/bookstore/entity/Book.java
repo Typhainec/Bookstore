@@ -15,6 +15,15 @@ public class Book {
     private String author;
     private String description;
     private byte[] image;
+
+    @Transient
+    private String imageBase64;
+
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
+    }
+
     private BigDecimal price;
 
 
@@ -68,11 +77,16 @@ public class Book {
     }
 
 
-    public String getImageBase64() {
+    public String getImage64() {
         if (image != null) {
             return Base64.getEncoder().encodeToString(image);
         }
         return null;
+    }
+
+    public String getImageBase64() {
+
+        return this.imageBase64;
     }
 
 
