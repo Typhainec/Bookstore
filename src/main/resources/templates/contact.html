@@ -2,26 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>Nous contacter</title>
 </head>
-<header>
-    <a href="http://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
-    <div class="menu">
-        <a href="http://localhost:8080/cart"><button>Panier</button></a>
-        <a href="http://localhost:8080/login"><button>Log in</button></a>
-    </div>
-</header>
+<header th:replace="~{fragment-header :: header}"></header>
 <body>
 <div class="contact">
     Pour nous contacter, veuillez nous envoyer un mail à l'adresse suivante : Bookstore@gmail.com
 </div>
-<footer>
-    <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
-    <span>Contact  : </span>
-    <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></a>
-    <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></a>
-
-</footer>
+<footer th:replace="~{fragment-footer :: footer}"></footer>
 </body>
 </html>

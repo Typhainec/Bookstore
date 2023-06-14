@@ -1,16 +1,15 @@
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #0096B1;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+* {
+    margin: 0;
+    padding: 2px;
+    font-family: "Bree Serif", serif;
+    box-sizing: content-box;
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.navbar-nav .nav-link {
+    font-family: "Bree", serif;
+}
+.navbar-nav.navbar-toggler{
+
 }
 
 div.menu {
@@ -24,6 +23,7 @@ div.menu {
 
 button {
     margin: 10px;
+    border: none;
 }
 
 .Bookstoregif {
@@ -109,14 +109,6 @@ div.rgpd {
     line-height: 1.5;
     color: #00202E;
     white-space: pre-line;
-}
-
-footer {
-    background-color: #0096B1;
-    font-family: "Bree Serif", serif;
-    color: #ffffff;
-    padding: 20px;
-    text-align: right;
 }
 
 .instagram {

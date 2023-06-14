@@ -41,9 +41,13 @@ public class BookController {
         return "contact";
     }
 
-    @RequestMapping("/cart")
-    public String cart(Model model) {
-        model.addAttribute("book", new Book());
+    @RequestMapping("/cart/{id}")
+    public String cart(@PathVariable Long id, Model model) {
+        Optional<Book> optionalBook = repo.findById(id);
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            model.addAttribute("book", book);
+        }
         return "cart";
     }
 

@@ -2,16 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <title>S'inscrire</title>
 </head>
-<header>
-    <a href="http://localhost:8080/"><img class="Bookstoregif" th:src="Bookstoregif.gif"/></a>
-    <div class="menu">
-        <a href="http://localhost:8080/cart"><button>Panier</button></a>
-        <a href="http://localhost:8080/login"><button>Log in</button></a>
-    </div>
-</header>
+<header th:replace="~{fragment-header :: header}"></header>
 <body>
 
 <form method="post" th:action="@{/create-account}">
@@ -24,15 +20,9 @@
     <label for="confirmPassword">Confirmez le mot de passe:</label>
     <input type="password" id="confirmPassword" name="confirmPassword" required><br>
 
-    <input type="submit" value="S'inscrire">
+    <input style="justify-content: center" type="submit" value="S'inscrire">
 </form>
 
-<footer>
-    <a href="http://localhost:8080/rgpd">Le Règlement Général sur la Protection des Données</a>
-    <span>Contact  : </span>
-    <a href="http://localhost:8080/contact"><img class="email" th:src="email.png"></img></a>
-    <a href="https://www.instagram.com/"><img class="instagram" th:src="instagram.png"></img></a>
-
-</footer>
+<footer th:replace="~{fragment-footer :: footer}"></footer>
 </body>
 </html>
