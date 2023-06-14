@@ -19,6 +19,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SpringSecurityConfig
 {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -53,5 +54,6 @@ public class SpringSecurityConfig
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     }
+
 
 }

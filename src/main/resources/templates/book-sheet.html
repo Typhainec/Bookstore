@@ -20,6 +20,7 @@
     <div class="price" th:text="${book.price}"></div>
 
     <button><a th:href="@{/update-book/{id}(id=${book.id})}">Modifier ce livre</a></button>
+    <button><a th:href="@{/cart/{id}(id=${book.id})}">Ajouter au panier</a></button>
     <button onclick="deleteBook(event)">Supprimer</button>
 
 </div>
